@@ -1,0 +1,221 @@
+﻿
+@{
+    ViewBag.Title = "Pagamento";
+    Layout = "~/Views/Shared/_LayoutInterno.cshtml";
+}
+
+<div class="main">
+    <div class="container">
+        <!-- BEGIN CONTENT -->
+        <div class="row margin-bottom-40">
+            <!-- BEGIN CONTENT -->
+            <div class="col-md-12 col-sm-12">
+                <h1>Realizar Pagamento</h1>
+                <div class="content-page">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="note note-success">
+                                <p style="text-align:justify;">
+                                    Faça o pagamento do serviço realizado, iremos ficar muito agradecidos com a ajuda. Acompanhe abaixo o quando precisamos para manter o serviço online. Você ajuda com quanto puder.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row margin-bottom-40">
+                        <!-- Pricing -->
+                        <div class="col-md-3">
+                            <div class="pricing hover-effect">
+                                <div class="pricing-head">
+                                    <h3>
+                                        Iniciante
+                                        <span>
+                                            Officia deserunt mollitia
+                                        </span>
+                                    </h3>
+                                    <h4>
+                                        <i>$</i>5<i>.49</i>
+                                        <span>
+                                            Per Month
+                                        </span>
+                                    </h4>
+                                </div>
+                                <ul class="pricing-content list-unstyled">
+                                    <li>
+                                        <i class="fa fa-tags"></i> At vero eos
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-asterisk"></i> No Support
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-heart"></i> Fusce condimentum
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star"></i> Ut non libero
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-shopping-cart"></i> Consecte adiping elit
+                                    </li>
+                                </ul>
+                                <div class="pricing-footer">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna psum olor .
+                                    </p>
+                                    <a href="#" class="btn btn-primary">
+                                        Pagar <i class="m-icon-swapright m-icon-white"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="pricing hover-effect">
+                                <div class="pricing-head">
+                                    <h3>
+                                        Beta
+                                        <span>
+                                            Officia deserunt mollitia
+                                        </span>
+                                    </h3>
+                                    <h4>
+                                        <i>$</i>8<i>.69</i>
+                                        <span>
+                                            Per Month
+                                        </span>
+                                    </h4>
+                                </div>
+                                <ul class="pricing-content list-unstyled">
+                                    <li>
+                                        <i class="fa fa-tags"></i> At vero eos
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-asterisk"></i> No Support
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-heart"></i> Fusce condimentum
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star"></i> Ut non libero
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-shopping-cart"></i> Consecte adiping elit
+                                    </li>
+                                </ul>
+                                <div class="pricing-footer">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna psum olor .
+                                    </p>
+                                    <a href="#" class="btn btn-primary">
+                                        Pagar <i class="m-icon-swapright m-icon-white"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="pricing hover-effect">
+                                <div class="pricing-head">
+                                    <h3>
+                                        Avançado
+                                        <span>
+                                            Officia deserunt mollitia
+                                        </span>
+                                    </h3>
+                                    <h4>
+                                        <i>$</i>13<i>.99</i>
+                                        <span>
+                                            Per Month
+                                        </span>
+                                    </h4>
+                                </div>
+                                <ul class="pricing-content list-unstyled">
+                                    <li>
+                                        <i class="fa fa-tags"></i> At vero eos
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-asterisk"></i> No Support
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-heart"></i> Fusce condimentum
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star"></i> Ut non libero
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-shopping-cart"></i> Consecte adiping elit
+                                    </li>
+                                </ul>
+                                <div class="pricing-footer">
+                                    <p>
+                                        Botão Paypal com css<br /><br /><br />
+                                    </p>
+                                    <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+                                        <fieldset>
+                                            <input class="full-width" type="hidden" name="business" value="gabrielandrade.moura@gmail.com">
+                                            <input type="hidden" name="cmd" value="_xclick">
+                                            <input type="hidden" name="item_name" value="Pagando o site...">
+                                            <input type="hidden" name="amount" value="9">
+                                            <input type="hidden" name="no_shipping" value="1">
+                                            <input type="hidden" name="currency_code" value="BRL">
+                                            <input type="hidden" name="invoice" value="usuario1">
+                                            <input type=hidden name=RETURNURL
+                                                   value="http://example.com/User/IPN">
+                                            <input type="hidden" name="return" value="http://example.com/User/IPN">
+                                            <input type="hidden" name="notify_url" value="http://example.com/User/IPN">
+
+                                            <button type="submit" class="btn btn-primary">Pagar <i class="m-icon-swapright m-icon-white"></i></button>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="pricing hover-effect">
+                                <div class="pricing-head">
+                                    <h3>
+                                        Hi-Tech
+                                        <span>
+                                            Officia deserunt mollitia
+                                        </span>
+                                    </h3>
+                                    <h4>
+                                        <i>$</i>99<i>.00</i>
+                                        <span>
+                                            Per Month
+                                        </span>
+                                    </h4>
+                                </div>
+                                <ul class="pricing-content list-unstyled">
+                                    <li>
+                                        <i class="fa fa-tags"></i> At vero eos
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-asterisk"></i> No Support
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-heart"></i> Fusce condimentum
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star"></i> Ut non libero
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-shopping-cart"></i> Consecte adiping elit
+                                    </li>
+                                </ul>
+                                <div class="pricing-footer">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna psum olor .
+                                    </p>
+                                    <a href="#" class="btn btn-primary">
+                                        Pagar <i class="m-icon-swapright m-icon-white"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--//End Pricing -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END CONTENT -->
+    </div>
+</div>
+
+

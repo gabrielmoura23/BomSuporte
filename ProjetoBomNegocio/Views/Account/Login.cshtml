@@ -1,0 +1,77 @@
+﻿@using ProjetoBomNegocio.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+    ViewBag.ReturnUrl = "/Interno/Index";
+}
+<div class="main">
+    <div class="container">
+        
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+            <!-- BEGIN SIDEBAR -->
+            <div class="sidebar col-md-3 col-sm-3">
+                
+            </div>
+            <!-- END SIDEBAR -->
+            <!-- BEGIN CONTENT -->
+            <div class="col-md-9 col-sm-9">
+                <h1>Login</h1>
+                <div class="content-form-page">
+                    <div class="row">
+                        <div class="col-md-7 col-sm-7">
+                            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <h4>Entre com seu e-mail e senha.</h4>
+                                <hr />
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    <label for="email" class="col-lg-4 control-label">E-mail <span class="require">*</span></label>
+                                    <div class="col-lg-8">
+                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="col-lg-4 control-label">Senha <span class="require">*</span></label>
+                                    <div class="col-lg-8">
+                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-offset-4 padding-left-0">
+                                        <a href="/Account/EsqueciSenha">Esqueceu a Senha?</a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-offset-4 padding-left-0 padding-top-20">
+                                        <button type="submit" class="btn btn-primary">Entrar</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-offset-4 padding-left-0 padding-top-10 padding-right-30">
+                                        <hr>
+                                        <div class="login-socio">
+                                            <p class="text-muted">ou entre usando:</p>
+                                            <ul class="social-icons">
+                                                <li><a href="#" data-original-title="facebook" class="facebook" title="facebook"></a></li>
+                                                <li><a href="#" data-original-title="Twitter" class="twitter" title="Twitter"></a></li>
+                                                <li><a href="#" data-original-title="Google Plus" class="googleplus" title="Google Plus"></a></li>
+                                                <li><a href="#" data-original-title="Linkedin" class="linkedin" title="LinkedIn"></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END SIDEBAR & CONTENT -->
+    </div>
+</div>
+

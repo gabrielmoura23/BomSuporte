@@ -1,0 +1,100 @@
+﻿@using Microsoft.AspNet.Identity
+@model ProjetoBomNegocio.Models.Tab_Contato
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutInterno.cshtml";
+}
+
+
+<div class="main">
+    <div class="container">
+        <div class="row margin-bottom-40">
+            <!-- BEGIN CONTENT -->
+            <div class="col-md-12">
+                <h1>Contato</h1>
+                <div class="content-page">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <p>Lorem ipsum dolor sit amet, Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat consectetuer adipiscing elit, sed diam nonummy nibh euismod tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
+                            <div class="alert alert-messages">
+                            </div>
+                           
+                            <!-- BEGIN FORM-->
+                            @using (Html.BeginForm("Index", "Contato", FormMethod.Post, new { role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary("", new { @class = "text-danger" })
+
+                                @Html.HiddenFor(model => model.data_cadastro, new { @Value=System.DateTime.Now.ToString("dd/MM/yyyy") })
+                                @Html.HiddenFor(model => model.idusuario_cadastro, new { @Value = User.Identity.GetUserId() })
+
+                                <div class="form-group">
+                                    <label for="contacts-name">Nome</label><span class="color-red"> *</span>
+                                    @Html.TextBoxFor(model => model.nome, new { @class = "form-control", @placeholder = "Nome" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="contacts-email">E-mail</label><span class="color-red"> *</span>
+                                    @Html.TextBoxFor(model => model.email, new { @class = "form-control", @placeholder = "E-mail" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="contacts-message">Mensagem</label><span class="color-red"> *</span>
+                                    @Html.TextAreaFor(model => model.mensagem, new { @class = "form-control", @rows = 5 })
+                                </div>
+                                <button type="submit" class="btn btn-primary"><i class="icon-ok"></i> Enviar</button>
+                                <button type="reset" class="btn btn-default">Cancelar</button>
+                            }
+                            <!-- END FORM-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END CONTENT -->
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="~/Content/assets/global/plugins/jquery.pulsate.min.js" type="text/javascript"></script>
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+}
+
+@section scripts2 {
+    <script type="text/javascript">
+        var mensagem_sucesso = '@TempData["Success"]';
+        var mensagem_erro = '@ViewBag.Erro';
+        
+        if (mensagem_sucesso != "")
+        {
+            showAndDismissAlert('success', mensagem_sucesso);
+        }
+
+        if (mensagem_erro != "") {
+            showAndDismissAlert('danger', mensagem_erro);
+        }
+
+        function showAndDismissAlert(type, message) {
+            var htmlAlert = '<div class="note note-' + type + '">' + message + '</div>';
+
+            // Prepend so that alert is on top, could also append if we want new alerts to show below instead of on top.
+            $(".alert-messages").prepend(htmlAlert);
+
+            if (type == "success") {
+                $('.alert-messages').pulsate({
+                    color: "#fdbe41",
+                    reach: 50,
+                    repeat: 7,
+                    speed: 200,
+                    glow: true
+                });
+            }
+
+            // Since we are prepending, take the first alert and tell it to fade in and then fade out.
+            // Note: if we were appending, then should use last() instead of first()
+            $(".alert-messages .note").first().hide().fadeIn(200).delay(4000).fadeOut(1000, function () { $(this).remove(); });
+        }
+</script>
+}
+
+<!-- END PAGE LEVEL JAVASCRIPTS -->
+

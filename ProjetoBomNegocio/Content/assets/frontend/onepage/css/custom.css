@@ -1,0 +1,31 @@
+/* here you can put your own css to customize and override the theme */
+
+.site-logo { padding-top: 0px;}
+.header-navigation{ padding-top: 0px;}
+
+
+/* Acesso block */
+.acesso-block {
+  background: #292f34;
+  color: #c8ced4;
+  padding: 25px 0;
+}
+.acesso-block h2 {
+  font: 400 33px "PT Sans Narrow", Arial, sans-serif;
+  margin: 2px 0 0;
+  text-align: left;
+}
+.acesso-block h2 em {
+  color: #767c81;
+  font: 300 18px "Open Sans", Arial, sans-serif;
+  text-transform: none;
+}
+.acesso-block h2:after {
+  display: none;
+}
+
+@-moz-document url-prefix() { 
+  .acesso-block .btn {
+    padding: 14px 20px 15px;
+  }
+}

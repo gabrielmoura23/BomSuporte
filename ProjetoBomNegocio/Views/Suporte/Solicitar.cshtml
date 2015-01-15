@@ -1,0 +1,171 @@
+﻿@using Microsoft.AspNet.Identity
+@model ProjetoBomNegocio.Models.Tab_Suporte
+
+@{
+    Layout = "~/Views/Shared/_LayoutInterno.cshtml";
+}
+
+@section Styles {
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <link href="~/Content/assets/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
+    <link href="~/Content/assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css">
+    <!-- END PAGE LEVEL STYLES -->
+    <!-- Theme styles START -->
+    <link href="~/Content/assets/global/css/plugins.css" rel="stylesheet">
+    <!-- Theme styles END -->
+}
+
+<div class="main">
+    <div class="container">
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-20">
+            <!-- BEGIN CONTENT -->
+            <div class="col-md-12 col-sm-12">
+                <h1>Solicitar Suporte</h1>
+                <div class="content-page">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="note note-success">
+                                <h4 class="bold">ATENÇÃO</h4>
+                                <p class="text-justify">
+                                    Precisamos que descreva com riqueza de detalhes o problema que está apresentando. Caso não seja possível realizar o reparo online, iremos descrever o problema identificado para que procure um técnico local.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <!-- BEGIN SAMPLE FORM PORTLET-->
+                            <div class="portlet box blue">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="fa fa-gift"></i> Preencha o formulário abaixo
+                                    </div>
+
+                                </div>
+                                <div class="portlet-body form">
+                                    @using (Html.BeginForm("Solicitar", "Suporte", FormMethod.Post, new { role = "form" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        @Html.ValidationSummary("", new { @class = "text-danger" })
+                                        
+                                        @Html.HiddenFor(model => model.status, new { @Value="Aberto" })
+                                        @Html.HiddenFor(model => model.data_abertura, new { @Value=System.DateTime.Now.ToString("dd/MM/yyyy") })
+                                        @Html.HiddenFor(model => model.idusuario_cadastro, new { @Value = User.Identity.GetUserId() })
+                  
+                                        <div class="form-body">
+                                            <div class="form-group">
+                                                <label>Descreva o problema com detalhes</label><span class="color-red"> *</span>
+                                                @Html.TextAreaFor(model => model.descricao, new { @class = "form-control", @rows = 3 })
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Qual seu sistema operacional?</label>
+                                                @{
+                                                    var itens_so = new SelectList(
+                                                        new List<SelectListItem>
+                                                        {
+                                                            new SelectListItem { Text = "Windows", Value = "Windows"},
+                                                            new SelectListItem { Text = "Linus", Value = "Linux"},
+                                                            new SelectListItem { Text = "Mac", Value = "Mac"}
+                                                        }, "Value", "Text");
+                                                }
+                                                @Html.DropDownListFor(model => model.sistema_operacional, itens_so, new { @class = "form-control" })
+                                            </div>
+                                            <div class="form-group">
+                                                <label>O problema é recorrente?</label>
+                                                @{
+                                                    var itens_recorrente = new SelectList(
+                                                        new List<SelectListItem>
+                                                        {
+                                                            new SelectListItem { Text = "Não", Value = "Não"},
+                                                            new SelectListItem { Text = "Sim", Value = "Sim"}
+                                                        }, "Value", "Text");
+                                                }
+                                                @Html.DropDownListFor(model => model.problema_recorrente, itens_recorrente, new { @class = "form-control" })
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Qual é a prioridade do chamado?</label>
+                                                @{
+                                                var itens_prioridade = new SelectList(
+                                                    new List<SelectListItem>
+                                                        {
+                                                            new SelectListItem { Text = "Baixa", Value = "Baixa"},
+                                                            new SelectListItem { Text = "Normal", Value = "Normal"},
+                                                            new SelectListItem { Text = "Alta", Value = "Alta"},
+                                                            new SelectListItem { Text = "Urgente", Value = "Urgente"}
+                                                        }, "Value", "Text");
+                                                }
+                                                @Html.DropDownListFor(model => model.prioridade, itens_prioridade, new { @class = "form-control" })
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Confirme seu endereço de e-mail</label><span class="color-red"> *</span>
+                                                <div class="form-group">
+                                                    @Html.TextBoxFor(model => model.email, new { @class = "form-control", @placeholder = "E-mail" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Telefone FIXO com DDD para contato</label><span class="color-red"> *</span>
+                                                <div class="input-group">
+                                                    @Html.TextBoxFor(model => model.ddd_telefone, new { @id = "ddd_telefone", @class = "form-control input-xsmall", @placeholder = "DDD" })
+                                                    @Html.TextBoxFor(model => model.telefone, new { @id= "telefone", @class = "form-control input-small", @placeholder = "Telefone FIXO" })
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Escolha o melhor horário para o atendimento</label>
+                                                    <div class="form-group">
+                                                        @Html.TextBoxFor(model => model.melhor_horario, new { @class = "form-control", @placeholder = "Escolha o melhor horário para o atendimento" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="alert alert-warning text-justify">
+                                                <strong>ATENÇÃO.</strong> Nós consideramos algumas ações necessárias para realizar uma limpeza completa do computador, incluindo a remoção de softwares listados abaixo sem solicitar permissão ao usuário.<br>- Baidu Antivirus<br>- PSafe<br>- Adwares - Programas que substituem sua página inícial
+                                                <i class="icon icon-alerts-01"></i>
+                                            </div>
+                                            <div class="form-info">
+                                                <div class="checkbox-list">
+                                                    <label>
+                                                        @Html.CheckBoxFor(model => model.flg_termo_aceito) ACEITO OS TERMOS DE SUPORTE REMOTO
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-actions">
+                                                <button type="submit" class="btn blue">Solicitar</button>
+                                                <button type="reset" class="btn default">Limpar campos</button>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            <!-- END SAMPLE FORM PORTLET-->
+                        </div>
+                    </div>
+
+                </div>
+                <!-- END CONTENT -->
+            </div>
+            <!-- END SIDEBAR & CONTENT -->
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="~/Content/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
+    <script src="~/Content/assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.inputmask/jquery.inputmask.js" type="text/javascript"></script>
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+}
+
+@section scripts2 {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#ddd_telefone").inputmask("99");
+            //$("#telefone").inputmask("999999999999");
+            $("#telefone").inputmask("99999999[999]");
+            //$(selector).inputmask("mask", { "mask": "(999) 999-9999" }); //specifying fn & options
+            //$(selector).inputmask({ "mask": "99-9999999" }); //specifying options only
+            //$(selector).inputmask("9-a{1,3}9{1,3}"); //mask with dynamic syntax 
+        });
+    </script>
+}
+
+<!-- END PAGE LEVEL JAVASCRIPTS -->
